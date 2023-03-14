@@ -1,10 +1,10 @@
-import { Router } from "express";
+import {Router} from "express";
 import UserController from "../controllers/userController.js";
 
 const router = Router();
 const userController = new UserController();
 
-router.post('/register',  (req, res) => {
+router.post('/register', (req, res) => {
     if (!req) {
         res.status(400).send({
             message: "Content can not be empty!",
@@ -20,7 +20,7 @@ router.post('/register',  (req, res) => {
         });
 });
 
-router.post('/login',  (req, res) => {
+router.post('/login', (req, res) => {
     if (!req) {
         res.status(400).send({
             message: "Content can not be empty!",
@@ -36,24 +36,23 @@ router.post('/login',  (req, res) => {
         });
 });
 
-router.put('/:isPublic',  (req, res) => {
+router.put('/:isPublic', (req, res) => {
     if (!req) {
         res.status(400).send({
             message: "Content can not be empty!",
         });
-        return;
+        return
     }
     return userController.updatePrivacy(req)
         .then((response) => {
             return res.status(200).send(response);
         })
         .catch((err) => {
-            console.log(err);
             return res.status(404).json(err);
         });
 });
 
-router.get('/:userId/photos',  (req, res) => {
+router.get('/:userId/photos', (req, res) => {
     if (!req) {
         res.status(400).send({
             message: "Content can not be empty!",
@@ -65,7 +64,6 @@ router.get('/:userId/photos',  (req, res) => {
             return res.status(200).send(response);
         })
         .catch((err) => {
-            console.log(err);
             return res.status(404).json(err);
         });
 });

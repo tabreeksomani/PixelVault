@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import User from '../models/user.js'
-import jwt from 'jsonwebtoken';
+import jwt, {verify} from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -21,12 +21,12 @@ function encrypt(password, salt) {
 }
 
 export default class UserController {
-    verifyToken = async (req) => {
+    verifyToken = (req) => {
         const token = req.headers["x-access-token"];
         try {
             const decoded = jwt.verify(token, secretKey);
-            const user = await User.findOne({_id: decoded._id, email: decoded.email});
-            return user;
+            // const user = await User.findOne({_id: decoded._id});
+            return decoded._id;
         } catch (err) {
             return null;
         }
@@ -88,11 +88,10 @@ export default class UserController {
                 if (existingUser && existingUser._id === req.body.username) {
                     if (existingUser.passwordHash === encrypt(password, existingUser.salt)) {
                         const payload = {
-                            userId: existingUser._id,
+                            _id: existingUser._id,
                             email: existingUser.email
                         };
-                        const options = {expiresIn: '6h'};
-                        const token = jwt.sign(payload, secretKey, options);
+                        const token = jwt.sign(payload, secretKey);
                         return resolve(token);
                     }
                 }
@@ -102,5 +101,51 @@ export default class UserController {
     }
 
 
+    updatePrivacy(req) {
+        return new Promise(async (resolve, reject) => {
+            if (!req.params || req.params.isPublic === null) {
+                return reject({err: "Privacy setting is missing"});
+            }
+            const isPublic = JSON.parse(req.params.isPublic);
+            if (typeof isPublic !== "boolean") {
+                return reject({err: "Privacy setting is missing"});
+
+            }
+            let userId = this.verifyToken(req);
+            if (userId === null) {
+                return reject({err: "User does not exist"});
+            }
+            const query = {_id: userId};
+            const update = {$set: {isPublic: req.params.isPublic}};
+            let user = await User.findOneAndUpdate(query, update, {
+                new: true
+            });
+            return resolve(user);
+        });
+
+
+    }
+
+
+    getPhotosByUser(req) {
+        return new Promise(async (resolve, reject) => {
+            if (!req.params || req.params.userId === null) {
+                return reject({err: "No username found"});
+            }
+            let userId;
+            userId = this.verifyToken(req);
+            if (userId === null) return reject("Unauthorized Request");
+            userId = req.params.userId;
+            let user = await User.findById(userId);
+            if (user != null) {
+                let myGallery = user.photos;
+                myGallery = myGallery.sort(function (a, b) {
+                    return b.created - a.created;
+                })
+                return resolve(myGallery);
+            }
+            return reject("User not found");
+        });
+    }
 }
 
