@@ -1,10 +1,12 @@
 import userRouter from "./api/routes/userRoute.js";
+import photoRouter from "./api/routes/photoRoute.js";
 import express from 'express'
 import mongoose from 'mongoose';
-import { config } from "dotenv";
+import {config} from "dotenv";
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 
@@ -13,7 +15,7 @@ const app = express();
 app.use(cors({
     origin: '*'
 }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 const port = 3000;
@@ -25,7 +27,7 @@ const db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "connection error: "));
 
-db.once("open",  () => {
+db.once("open", () => {
     console.log("Connected to database");
 });
 
@@ -41,4 +43,6 @@ app.listen(port, () => {
 });
 
 app.use('/users', userRouter);
+
+app.use('/photos', photoRouter)
 
