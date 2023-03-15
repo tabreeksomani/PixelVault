@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import User from '../models/user.js'
-import jwt, {verify} from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -25,7 +25,6 @@ export default class UserController {
         const token = req.headers["x-access-token"];
         try {
             const decoded = jwt.verify(token, secretKey);
-            // const user = await User.findOne({_id: decoded._id});
             return decoded._id;
         } catch (err) {
             return null;
@@ -38,7 +37,7 @@ export default class UserController {
 
             for (const field of requiredFields) {
                 if (!req.body[field]) {
-                    return reject({err: "Required field " + field + " is missing"});
+                    return reject("Required field " + field + " is missing");
                 }
             }
             let salt = genRandomString(16);
@@ -59,18 +58,18 @@ export default class UserController {
 
             let result = await User.findOne({email: user.email});
             if (result != null) {
-                return reject({err: "User with this email already exists"});
+                return reject("User with this email already exists");
             }
             result = await User.findOne({_id: user._id});
             if (result != null) {
-                return reject({err: "User with this username already exists"});
+                return reject("User with this username already exists");
             }
             try {
                 user.save();
                 return resolve("User saved successfully: ", user.userId);
 
             } catch (e) {
-                return reject({err: "Error saving user"});
+                return reject("Error saving user");
 
             }
 
@@ -80,7 +79,7 @@ export default class UserController {
     authenticateUser(req) {
         return new Promise(async (resolve, reject) => {
             if (!req.body['username'] || !req.body['password']) {
-                return reject({err: "Username or Password field is missing"});
+                return reject("Username or Password field is missing");
             }
             let password = req.body.password;
             let existingUser = await User.findOne({_id: req.body.username});
@@ -92,11 +91,17 @@ export default class UserController {
                             email: existingUser.email
                         };
                         const token = jwt.sign(payload, secretKey);
-                        return resolve(token);
+                        return resolve({
+                            token: token, user: {
+                                username: existingUser._id,
+                                firstName: existingUser.firstName,
+                                isPublic: existingUser.isPublic
+                            }
+                        });
                     }
                 }
             }
-            return reject({err: "Login failed, incorrect credentials. Please try again."});
+            return reject("Login failed, incorrect credentials. Please try again.");
         });
     }
 
@@ -104,16 +109,16 @@ export default class UserController {
     updatePrivacy(req) {
         return new Promise(async (resolve, reject) => {
             if (!req.params || req.params.isPublic === null) {
-                return reject({err: "Privacy setting is missing"});
+                return reject("Privacy setting is missing");
             }
             const isPublic = JSON.parse(req.params.isPublic);
             if (typeof isPublic !== "boolean") {
-                return reject({err: "Privacy setting is missing"});
+                return reject("Privacy setting is missing");
 
             }
             let userId = this.verifyToken(req);
             if (userId === null) {
-                return reject({err: "User does not exist"});
+                return reject("User does not exist");
             }
             const query = {_id: userId};
             const update = {$set: {isPublic: req.params.isPublic}};
@@ -130,7 +135,7 @@ export default class UserController {
     getPhotosByUser(req) {
         return new Promise(async (resolve, reject) => {
             if (!req.params || req.params.userId === null) {
-                return reject({err: "No username found"});
+                return reject("No username found");
             }
             let userId;
             userId = this.verifyToken(req);

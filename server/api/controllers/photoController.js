@@ -8,6 +8,7 @@ const secretKey = process.env.SECRET_KEY;
 
 export default class PhotoController {
     verifyToken = (req) => {
+        if (!req.headers) return null;
         const token = req.headers["x-access-token"];
         try {
             const decoded = jwt.verify(token, secretKey);
@@ -42,7 +43,6 @@ export default class PhotoController {
         return new Promise(async (resolve, reject) => {
             let buffer
             if (req.file == null) {
-                // If Submit was accidentally clicked with no file selected...
                 return reject("No file uploaded")
             } else {
                 // read the img file from tmp in-memory location
@@ -80,9 +80,7 @@ export default class PhotoController {
             let gallery = [];
             for (let user of users) {
                 if (user.isPublic) {
-                    user.photos.map((photo) => {
-                        gallery.push(photo);
-                    })
+                    gallery.push(...user.photos);
                 }
             }
 

@@ -32,7 +32,7 @@ db.once("open", () => {
 });
 
 // Define a route for the home page
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     console.log("Ping");
     res.json('Hello, world!');
 });
@@ -42,7 +42,7 @@ app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
 
-app.use('/users', userRouter);
+app.use('/api/users', userRouter);
 
-app.use('/photos', photoRouter)
+app.use('/api/photos', photoRouter)
 
