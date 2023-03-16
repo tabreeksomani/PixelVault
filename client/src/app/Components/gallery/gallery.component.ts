@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {Photo, Thumbnail} from "../app.component";
-import {PhotoService} from "../Services/photo.service";
+import {Photo, Thumbnail} from "../../app.component";
+import {PhotoService} from "../../Services/photo.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {Buffer} from 'buffer';
 

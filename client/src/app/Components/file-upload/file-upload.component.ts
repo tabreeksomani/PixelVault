@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {PhotoService} from "../Services/photo.service";
+import {PhotoService} from "../../Services/photo.service";
 
 
 @Component({
@@ -27,8 +27,8 @@ export class FileUploadComponent {
       const formData = new FormData();
       formData.append('image', this.selectedFile, this.selectedFile.name);
       console.log("Sending");
-      return this.photoService.uploadPhoto(formData).subscribe((response) => {
-        this.dialogRef.close();
+      return this.photoService.uploadPhoto(formData).subscribe(() => {
+        this.dialogRef.close(true);
       })
     }
     return;

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {PhotoService} from "../Services/photo.service";
+import {PhotoService} from "../../Services/photo.service";
 import {DomSanitizer} from "@angular/platform-browser";
-import {Photo, Thumbnail} from "../app.component";
+import {Photo, Thumbnail} from "../../app.component";
 import {Buffer} from 'buffer';
 import {MatDialog} from "@angular/material/dialog";
 import {Location} from '@angular/common';
@@ -31,12 +31,13 @@ export class MyphotosComponent {
   openModal(photoId: string) {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
       width: '400px',
-      data: {id: photoId} // Optional data to pass to your modal
+      data: {id: photoId}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
-      this.refresh();
+      if (result) {
+        this.refresh();
+      }
     });
   }
 
@@ -57,10 +58,7 @@ export class MyphotosComponent {
           thumbnails.push({id: image._id, src: thumbnail});
         });
         this.thumbnails = thumbnails;
-
       }
     })
-
   }
-
 }

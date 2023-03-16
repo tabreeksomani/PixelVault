@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {PhotoService} from "../Services/photo.service";
+import {PhotoService} from "../../Services/photo.service";
 
 
 @Component({
@@ -14,9 +14,8 @@ export class ConfirmDeleteComponent {
   }
 
   deletePhoto() {
-    this.photoService.deletePhoto(this.data.id).subscribe((response) => {
-      this.dialogRef.close();
-
+    this.photoService.deletePhoto(this.data.id).subscribe(() => {
+      this.dialogRef.close(true);
     });
   }
 }

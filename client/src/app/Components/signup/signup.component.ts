@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UserService} from "../Services/user.service";
+import {UserService} from "../../Services/user.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 
@@ -42,11 +42,12 @@ export class SignupComponent {
     if (form.username && form.password && form.firstName && form.lastName && form.email) {
       return this.userService.registerUser(form.username, form.password, form.email, form.firstName, form.lastName).subscribe({
           next: () => {
-            this.router.navigate(['/login']);
+            return this.router.navigate(['/login']);
 
           },
           error: (err: any) => {
             this.formError = err.error;
+            return;
           }
         }
       )

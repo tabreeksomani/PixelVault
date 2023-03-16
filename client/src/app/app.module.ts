@@ -7,13 +7,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PhotoService} from "./Services/photo.service";
 import {UserService} from "./Services/user.service";
-import {FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {SignupComponent} from './signup/signup.component';
-import {LoginComponent} from './login/login.component';
-import {GalleryComponent} from './gallery/gallery.component';
-import {MyphotosComponent} from './myphotos/myphotos.component';
-import {UserGalleryComponent} from './user-gallery/user-gallery.component';
-import {NavbarComponent} from './navbar/navbar.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {SignupComponent} from './Components/signup/signup.component';
+import {LoginComponent} from './Components/login/login.component';
+import {GalleryComponent} from './Components/gallery/gallery.component';
+import {MyphotosComponent} from './Components/myphotos/myphotos.component';
+import {UserGalleryComponent} from './Components/user-gallery/user-gallery.component';
+import {NavbarComponent} from './Components/navbar/navbar.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -23,17 +23,13 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {
-  MatSlideToggle,
-  MatSlideToggleModule,
-} from '@angular/material/slide-toggle';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
-import {MatDialog, MatDialogModule} from "@angular/material/dialog";
-import {FileUploadComponent} from './file-upload/file-upload.component';
-import {UserformComponent} from './userform/userform.component';
-import {ConfirmDeleteComponent} from './confirm-delete/confirm-delete.component';
-import {AuthenticatedGuard} from "./auth-guard/authenticated.guard";
+import {MatDialogModule} from "@angular/material/dialog";
+import {FileUploadComponent} from './Components/file-upload/file-upload.component';
+import {ConfirmDeleteComponent} from './Components/confirm-delete/confirm-delete.component';
+import {AuthenticatedGuard} from "./Guards/auth-guard/authenticated.guard";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const routes: Routes = [
@@ -56,7 +52,6 @@ const routes: Routes = [
     UserGalleryComponent,
     NavbarComponent,
     FileUploadComponent,
-    UserformComponent,
     ConfirmDeleteComponent,
   ],
   imports: [

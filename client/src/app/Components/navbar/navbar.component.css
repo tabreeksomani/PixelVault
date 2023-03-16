@@ -8,7 +8,6 @@ mat-toolbar {
   font-size: x-large;
 }
 
-/* Center the logo vertically */
 .logo-container {
   display: flex;
   align-items: center;
@@ -18,12 +17,17 @@ mat-toolbar {
 }
 
 .logo-container:hover {
-  cursor: pointer;
+  cursor: pointer;;
 }
+
 
 /* Add some space between the logo/tabs/icons */
 .spacer {
   flex: 1;
+}
+
+.addPhoto {
+  margin-right: 4vw;
 }
 
 .my-link {
@@ -48,16 +52,12 @@ input {
 }
 
 mat-card {
-  background-color: #4CAF50; /* Set background color to green */
-  color: white; /* Set text color to white */
-  max-width: 600px; /* Set maximum width for the card */
-  margin: auto; /* Center the card */
+  background-color: #4CAF50;
+  color: white;
+  max-width: 600px;
+  margin: auto;
 }
 
-
-.mat-form-field ::-webkit-scrollbar {
-  height: 5px; /* Set the height of the scrollbar */
-}
 
 .my-menu {
   padding: 2vh;
@@ -69,20 +69,13 @@ mat-card {
   text-align: center;
 }
 
-
-.mat-form-field ::-webkit-scrollbar-thumb {
-  background-color: blue; /* Set the color of the scrollbar thumb */
-  border-radius: 5px; /* Set the border radius of the thumb */
-}
-
-/* Add some custom styles to the tabs */
 .mat-tab-label {
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-/* Highlight the selected tab */
+
 .mat-tab-label-active {
   font-weight: 700;
   border-bottom: 3px solid transparent;
@@ -90,7 +83,6 @@ mat-card {
 
 }
 
-/* Add colored underline to active tab */
 .mat-tab-link {
   border-bottom: 3px solid transparent;
 }
@@ -128,8 +120,6 @@ input {
 }
 
 .custom-slide-toggle .mat-slide-toggle-bar {
-  /*background-color: green;*/
-  /*color: #4CAF50;*/
   border-radius: 30px;
   height: 16px;
   width: 40px;

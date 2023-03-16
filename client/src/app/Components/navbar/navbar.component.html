@@ -1,0 +1,46 @@
+<mat-toolbar>
+  <div class="logo-container" (click)="redirectToHome()">
+    <img src="../../../assets/Logo.png" alt="Logo" style="height: 8vh">
+    <span class="logo-header">PixelVault</span>
+  </div>
+  <div class="spacer"></div>
+  <div class="centered-tabs-container">
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link class="my-link"
+         *ngFor="let link of navLinks"
+         [routerLink]="link.path"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive">{{link.label}}</a>
+    </nav>
+  </div>
+  <div class="spacer"></div>
+  <button mat-icon-button (click)="openModal()" class="addPhoto">
+    <mat-icon>add_to_photos</mat-icon>
+  </button>
+  <span></span>
+  <button mat-icon-button [matMenuTriggerFor]="menu" xPosition='after'>
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu class="my-menu" #menu="matMenu" [overlapTrigger]="false">
+    <div class="menu-header" style="text-transform: capitalize">Hi {{name}}!</div>
+    <mat-form-field>
+      <mat-label>Share your photos</mat-label>
+      <input matInput type="text" [ngModel]="shareBaseLink" readonly style="font-size: x-small">
+      <mat-icon matSuffix (click)="copyLink()">content_copy</mat-icon>
+    </mat-form-field>
+    <button mat-menu-item>
+
+      <mat-slide-toggle color="primary" class="custom-slide-toggle" [checked]="isPublic"
+                        (change)="updatePrivacy($event)">{{privacy}}
+      </mat-slide-toggle>
+    </button>
+
+    <a routerLink="/login">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+
+    </a>
+  </mat-menu>
+</mat-toolbar>

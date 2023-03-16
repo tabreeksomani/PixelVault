@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UserService} from "../Services/user.service";
+import {UserService} from "../../Services/user.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 
@@ -39,7 +39,8 @@ export class LoginComponent {
             return this.router.navigate(['/gallery']);
           },
           error: (err: any) => {
-            this.formError = err.error;
+            this.formError = "Login Failed";
+            console.log(err);
           }
         }
       )
