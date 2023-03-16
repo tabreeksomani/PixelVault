@@ -4,6 +4,8 @@ Preserve your memories, share your moments!
 
 ## About PixelVault:
 
+![img_1.png](img_1.png)
+
 PixelVault is a photo sharing app that allows users to easily upload and share their photos with others. With
 PixelVault, users can register for a new account and log in using secure JWT authentication. The app features Angular
 Material styling for a sleek and modern design.
@@ -42,8 +44,10 @@ others in a safe and secure way.
 
 
 - Image recognition: Utilize machine learning to automatically tag and categorize photos based on their content, making
-  it
-  easier for users to search for and discover specific types of photos.
+  it easier for users to search for and discover specific types of photos.
+
+
+- Photo Collections: Provide support for multiple photos at a time and store albums for each user
 
 
 - Advanced privacy settings: Expand on the app's existing privacy settings by allowing users to set permissions for
