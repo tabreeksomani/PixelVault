@@ -24,7 +24,7 @@ router.delete('/:photoId', (req, res) => {
     }
     return photoController.deletePhoto(req)
         .then((response) => {
-            return res.status(200).send(response);
+            return res.status(200).json(response);
         })
         .catch((err) => {
             return res.status(404).json(err);
@@ -40,7 +40,7 @@ router.post('/', upload.single('image'), (req, res) => {
     }
     return photoController.addPhoto(req)
         .then((response) => {
-            return res.status(200).send(response);
+            return res.status(200).json(response);
         })
         .catch((err) => {
             return res.status(404).json(err);
@@ -56,7 +56,7 @@ router.get('/', (req, res) => {
     }
     return photoController.getPublicPhotos(req)
         .then((response) => {
-            return res.status(200).send(response);
+            return res.status(200).json(response);
         })
         .catch((err) => {
             return res.status(404).json(err);

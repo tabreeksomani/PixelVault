@@ -16,8 +16,7 @@ function encrypt(password, salt) {
     let hash = crypto.createHmac('sha512', salt);
     /** Hashing algorithm sha512 */
     hash.update(password);
-    const value = hash.digest('hex');
-    return value;
+    return hash.digest('hex');
 }
 
 export default class UserController {
@@ -101,7 +100,7 @@ export default class UserController {
                     }
                 }
             }
-            return reject("Login failed, incorrect credentials. Please try again.");
+            return reject("Incorrect credentials. Please try again.");
         });
     }
 

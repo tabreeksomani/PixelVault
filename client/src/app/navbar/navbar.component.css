@@ -1,0 +1,146 @@
+/* Customize the height of the toolbar to match the logo height */
+mat-toolbar {
+  height: 6vh;
+  background-color: #FFFBED;
+}
+
+.logo-header {
+  font-size: x-large;
+}
+
+/* Center the logo vertically */
+.logo-container {
+  display: flex;
+  align-items: center;
+  height: 6vh;
+  width: 6vh;
+
+}
+
+.logo-container:hover {
+  cursor: pointer;
+}
+
+/* Add some space between the logo/tabs/icons */
+.spacer {
+  flex: 1;
+}
+
+.my-link {
+  margin-right: 5px;
+  min-width: 200px;
+}
+
+/* Center the tabs horizontally */
+.centered-tabs-container {
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+.mat-form-field {
+  overflow-x: auto;
+}
+
+input {
+  font-size: x-small;
+  height: auto;
+}
+
+mat-card {
+  background-color: #4CAF50; /* Set background color to green */
+  color: white; /* Set text color to white */
+  max-width: 600px; /* Set maximum width for the card */
+  margin: auto; /* Center the card */
+}
+
+
+.mat-form-field ::-webkit-scrollbar {
+  height: 5px; /* Set the height of the scrollbar */
+}
+
+.my-menu {
+  padding: 2vh;
+}
+
+.my-menu .mat-menu-panel {
+  min-width: 600px;
+  align-items: center;
+  text-align: center;
+}
+
+
+.mat-form-field ::-webkit-scrollbar-thumb {
+  background-color: blue; /* Set the color of the scrollbar thumb */
+  border-radius: 5px; /* Set the border radius of the thumb */
+}
+
+/* Add some custom styles to the tabs */
+.mat-tab-label {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Highlight the selected tab */
+.mat-tab-label-active {
+  font-weight: 700;
+  border-bottom: 3px solid transparent;
+  border-bottom: 3px solid green;
+
+}
+
+/* Add colored underline to active tab */
+.mat-tab-link {
+  border-bottom: 3px solid transparent;
+}
+
+.mat-tab-link.mat-tab-link-active {
+  border-bottom: 3px solid #1976d2;
+}
+
+.menu-popover {
+  margin-top: 4px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  padding: 8px;
+  background-color: #fff;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-menu-content {
+  padding: 8px;
+}
+
+.menu-header {
+  font-weight: bold;
+  margin-bottom: 8px;
+  padding-left: 10px;
+  text-align: center;
+}
+
+input {
+  font-size: x-small;
+}
+
+.custom-slide-toggle .mat-slide-toggle-bar {
+  /*background-color: green;*/
+  /*color: #4CAF50;*/
+  border-radius: 30px;
+  height: 16px;
+  width: 40px;
+}
+
+.custom-slide-toggle .mat-slide-toggle-thumb {
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  height: 24px;
+  margin-left: -4px;
+  margin-top: -4px;
+  width: 24px;
+}

@@ -27,10 +27,8 @@ export default class PhotoController {
             let userId;
             userId = this.verifyToken(req);
             if (userId === null) return reject("Unauthorized Request");
-
             let user = await User.updateOne({_id: userId},
-                {$pull: {photos: {_id: req.params.photoId}}}
-            );
+                {$pull: {photos: {_id: req.params.photoId}}});
             if (user.modifiedCount === 0) {
                 return reject("Unauthorized Request: Photo not found");
             }

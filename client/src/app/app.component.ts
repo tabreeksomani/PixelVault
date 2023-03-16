@@ -15,7 +15,8 @@ export interface Photo {
   };
 }
 
-interface Thumbnail {
+
+export interface Thumbnail {
   id: string,
   src: SafeUrl
 }
@@ -25,6 +26,8 @@ interface Thumbnail {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent {
   title = 'app';
   username: string = "";
@@ -32,30 +35,22 @@ export class AppComponent {
   email: string = "";
   firstName: string = "";
   lastName: string = "";
-  jwt: string = "";
   thumbnails: Thumbnail[] = [];
   private loggedIn: boolean = false;
   selectedFile: File | null = null;
   gallery: Thumbnail[] = [];
   isPublic: boolean = false;
+  public jwt: string = "";
 
 
   constructor(private userService: UserService, private photoService: PhotoService, private sanitizer: DomSanitizer) {
-    this.getJwt();
+    // this.getJwt();
   }
 
-  getJwt() {
-    if (this.jwt.length === 0) {
-      const storageToken = localStorage.getItem("jwt");
-      if (storageToken !== null)
-        this.jwt = storageToken;
-    }
-    return this.jwt;
-  }
 
   updatePrivacy() {
     this.isPublic = !this.isPublic;
-    return this.userService.updatePrivacy(this.isPublic, this.jwt);
+    return this.userService.updatePrivacy(this.isPublic);
   }
 
   register() {
@@ -89,7 +84,7 @@ export class AppComponent {
 
   getGallery() {
     this.gallery = [];
-    this.photoService.getGallery(this.jwt).subscribe({
+    this.photoService.getGallery().subscribe({
       next: (res) => {
         res.forEach((image: Photo) => {
           let buf = Buffer.from(image.img.data).toString('base64');
@@ -106,7 +101,7 @@ export class AppComponent {
 
   myPhotos() {
     this.thumbnails = [];
-    this.photoService.getUserGallery(this.username, this.jwt).subscribe({
+    this.photoService.getUserGallery(this.username).subscribe({
       next: (res) => {
         res.forEach((image: Photo) => {
           let buf = Buffer.from(image.img.data).toString('base64');
@@ -124,7 +119,7 @@ export class AppComponent {
 
   userGallery(userId: string) {
     this.thumbnails = [];
-    this.photoService.getUserGallery(userId, this.jwt).subscribe({
+    this.photoService.getUserGallery(userId).subscribe({
       next: (res) => {
         res.forEach((image: Photo) => {
           let buf = Buffer.from(image.img.data).toString('base64');
@@ -151,7 +146,7 @@ export class AppComponent {
       const formData = new FormData();
       formData.append('image', this.selectedFile, this.selectedFile.name);
       console.log("Sending");
-      return this.photoService.uploadPhoto(formData, this.jwt).subscribe({
+      return this.photoService.uploadPhoto(formData).subscribe({
         next: response => {
           alert(response);
         },
@@ -174,11 +169,18 @@ export class AppComponent {
   }
 
   deletePhoto(photo_id: string) {
-    this.photoService.deletePhoto(photo_id, this.jwt).subscribe((response) => {
+    this.photoService.deletePhoto(photo_id).subscribe((response) => {
         console.log(response);
         alert("Successfully Deleted");
       }
     );
     this.myPhotos();
+  }
+
+  getJwt() {
+    const storageToken = localStorage.getItem("jwt");
+    if (storageToken !== null)
+      return storageToken;
+    return "";
   }
 }

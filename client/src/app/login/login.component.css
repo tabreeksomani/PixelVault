@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  text-align: center;
+
+}
+
+.logo-header {
+  font-size: x-large;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vh;
+}
+
+img {
+  height: 8vh;
+  margin: auto;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-error {
+  margin-bottom: 1vh;
+}
+
+nav {
+  padding: 2vh;
+}

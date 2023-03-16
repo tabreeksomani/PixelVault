@@ -10,11 +10,19 @@ interface Token {
   }
 }
 
+export function getJwt() {
+  const storageToken = localStorage.getItem("jwt");
+  if (storageToken !== null)
+    return storageToken;
+  return "";
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private apiUrl = 'http://localhost:3000/api/users';
+
 
   constructor(private http: HttpClient) {
   }
@@ -40,11 +48,15 @@ export class UserService {
 
   }
 
+  isLoggedIn(): boolean {
+    return (getJwt().length > 0);
+  }
 
-  updatePrivacy(isPublic: boolean, jwt: string) {
+
+  updatePrivacy(isPublic: boolean) {
     return this.http.put(this.apiUrl + '/' + isPublic, null, {
-      headers: new HttpHeaders({"x-access-token": jwt})
-    }).subscribe();
+      headers: new HttpHeaders({"x-access-token": getJwt()})
+    })
   }
 
 

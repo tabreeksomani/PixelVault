@@ -1,0 +1,51 @@
+<div class="container">
+  <form [formGroup]="signUpForm" (ngSubmit)="register()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title class="logo-header">
+          <img src="assets/Logo-white.png" alt="Logo">
+          <span>PixelVault</span>
+        </mat-card-title>
+
+      </mat-card-header>
+      <mat-card-content>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" required minlength="5">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" required>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" required minlength="8">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input matInput type="password" formControlName="confirmpass" required>
+        </mat-form-field>
+        <br>
+        <mat-error>{{formError}}</mat-error>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!signUpForm.valid">Create Account</button>
+        <nav>
+          <a routerLink="/login">Already have an account? Login here</a>
+        </nav>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>
+
+

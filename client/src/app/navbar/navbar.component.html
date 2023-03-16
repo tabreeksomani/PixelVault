@@ -1,0 +1,61 @@
+<mat-toolbar>
+  <div class="logo-container" (click)="redirectToHome()">
+    <img src="assets/Logo.png" alt="Logo" style="height: 8vh">
+    <span class="logo-header">PixelVault</span>
+  </div>
+  <div class="spacer"></div>
+  <div class="centered-tabs-container">
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link class="my-link"
+         *ngFor="let link of navLinks"
+         [routerLink]="link.path"
+         routerLinkActive #rla="routerLinkActive"
+         [active]="rla.isActive">{{link.label}}</a>
+    </nav>
+  </div>
+
+
+  <!--  <div class="centered-tabs-container">-->
+  <!--    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" dynamicHeight="false"-->
+  <!--                   (selectedTabChange)="onTabChanged($event)">-->
+  <!--      <a mat-tab-link routerLink="/second" routerLinkActive="active" mat-tab-label>Second</a>-->
+  <!--      <a mat-tab-link routerLink="/third" routerLinkActive="active" mat-tab-label>Third</a>-->
+  <!--    </mat-tab-group>-->
+  <!--    <router-outlet></router-outlet>-->
+  <!--  </div>-->
+  <!--  <div class="centered-tabs-container">-->
+  <!--    <mat-tab-nav-bar>-->
+  <!--      <a mat-tab-link routerLink="/gallery" routerLinkActive="active" mat-tab-label>Gallery</a>-->
+  <!--      <a mat-tab-link routerLink="/myphotos" routerLinkActive="active" mat-tab-label>My Photos</a>-->
+  <!--    </mat-tab-nav-bar>-->
+  <!--    <router-outlet></router-outlet>-->
+  <!--  </div>-->
+  <div class="spacer"></div>
+  <mat-icon (click)="openModal()">add_to_photos</mat-icon>
+  <button mat-icon-button [matMenuTriggerFor]="menu" xPosition='after'>
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu class="my-menu" #menu="matMenu" [overlapTrigger]="false">
+    <div class="menu-header">Hi {{name}}!</div>
+    <mat-form-field>
+      <mat-label>Share your photos</mat-label>
+      <input matInput type="text" [ngModel]="link" readonly style="font-size: x-small">
+      <mat-icon matSuffix (click)="copyLink()">content_copy</mat-icon>
+    </mat-form-field>
+    <button mat-menu-item>
+
+      <mat-slide-toggle color="primary" class="custom-slide-toggle" [checked]="isPublic"
+                        (change)="updatePrivacy($event)">Public
+      </mat-slide-toggle>
+    </button>
+
+    <a routerLink="/login">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+
+    </a>
+  </mat-menu>
+</mat-toolbar>
+<!--<router-outlet></router-outlet>-->

@@ -1,0 +1,28 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="text" formControlName="firstName">
+
+  <label for="last-name">Last Name: </label>
+  <input id="last-name" type="text" formControlName="lastName">
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+
+</form>
+
+<mat-toolbar color="primary">
+  <div class="logo-container">
+    <img src="assets/logo.png" alt="Logo" class="logo">
+  </div>
+  <div class="nav-container">
+    <a mat-button routerLink="/" routerLinkActive="active-link">Home</a>
+    <a mat-button routerLink="/about" routerLinkActive="active-link">About</a>
+  </div>
+  <div class="icon-container">
+    <button mat-icon-button>
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

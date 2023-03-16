@@ -1,0 +1,14 @@
+app-navbar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.navbarWrapper {
+  justify-content: right;
+  width: 100%;
+  display: block;
+
+
+}
+
