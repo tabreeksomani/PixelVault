@@ -20,7 +20,6 @@ export class UserGalleryComponent {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.userId = params['id'];
-      console.log(this.userId);
     });
     this.getPhotos();
   }

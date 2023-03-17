@@ -50,7 +50,7 @@ export class MyphotosComponent {
 
   myPhotos() {
     let thumbnails: Thumbnail[] = [];
-    this.photoService.getUserGallery(this.getUser()).subscribe({
+    return this.photoService.getUserGallery(this.getUser()).subscribe({
       next: (res) => {
         res.forEach((image: Photo) => {
           let buf = Buffer.from(image.img.data).toString('base64');

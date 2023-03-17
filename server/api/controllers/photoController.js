@@ -45,9 +45,7 @@ export default class PhotoController {
             } else {
                 // read the img file from tmp in-memory location
                 const newImg = fs.readFileSync(req.file.path);
-                // encode the file as a base64 string.
                 const encImg = newImg.toString('base64');
-                // define your new document
                 buffer = new Buffer(encImg, 'base64')
             }
             const userId = this.verifyToken(req);

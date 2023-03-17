@@ -33,12 +33,7 @@ export class SignupComponent {
       this.formError = "Passwords don't match";
       return;
     }
-
-    if (form.username && form.username.length < 5) {
-      this.formError = "Username must be greater than 5 characters"
-      return;
-    }
-
+    
     if (form.username && form.password && form.firstName && form.lastName && form.email) {
       return this.userService.registerUser(form.username, form.password, form.email, form.firstName, form.lastName).subscribe({
           next: () => {

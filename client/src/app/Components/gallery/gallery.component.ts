@@ -18,7 +18,7 @@ export class GalleryComponent {
 
   getGallery() {
     let updatedGallery: Thumbnail[] = [];
-    this.photoService.getGallery().subscribe({
+    return this.photoService.getGallery().subscribe({
       next: (res) => {
         res.forEach((image: Photo) => {
           let buf = Buffer.from(image.img.data).toString('base64');
