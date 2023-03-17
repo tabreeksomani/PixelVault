@@ -2,6 +2,12 @@
 
 Preserve your memories, share your moments!
 
+This README includes:
+
+- [About PixelVault](#about-pixelvault)
+- [What's Next?](#whats-next)
+- [Project Setup](#project-setup)
+
 ## About PixelVault:
 
 ![img_1.png](img_1.png)
@@ -26,32 +32,19 @@ Overall, PixelVault is an easy-to-use photo sharing app that prioritizes user pr
 interface and convenient link sharing feature make it a great choice for anyone looking to share their photos with
 others in a safe and secure way.
 
-## Potential New Features:
+## What's Next?
 
-- User profiles: Allow users to create and customize their own profiles, which could include a profile picture, bio, and
-  links to social media profiles.
+- User profiles
 
+- Commenting and liking - Interacting with gallery photos
 
-- Commenting and liking: Allow users to comment on and like each other's photos, fostering a sense of community within
-  the app.
+- "Photo of the Day" feature
 
+- Image recognition and search
 
-- "Photo of the Day" feature that utilizes upvotes to showcase the most popular and high-quality photo uploaded by users
-  on a particular day. This feature would be designed to promote engagement and interaction within the PixelVault
-  community, while also providing a fun and exciting way for users to discover new and interesting photos. Photo filters
-  and editing: Incorporate photo editing tools and filters to allow users to enhance and customize their
-  photos before uploading them.
+- Photo collections and albums
 
-
-- Image recognition: Utilize machine learning to automatically tag and categorize photos based on their content, making
-  it easier for users to search for and discover specific types of photos.
-
-
-- Photo Collections: Provide support for multiple photos at a time and store albums for each user
-
-
-- Advanced privacy settings: Expand on the app's existing privacy settings by allowing users to set permissions for
-  individual photos or albums, giving them greater control over who can view their content.
+- Advanced privacy settings- individual photo visibility
 
 ## Project Setup:
 
@@ -68,19 +61,21 @@ steps to use the app.
 
 1. Clone the repository to your local machine: ```https://github.com/tabreeksomani/PixelVault.git```
 2. Open a terminal and navigate to the project directory.
-3. Run npm install to install all the dependencies for the client and server.
-
-### Starting the Client:
-
-1. Navigate to the "client" directory in the terminal.
-2. Run npm start to start the client.
-3. The client will open in your default web browser at http://localhost:4200.
+3. Add the ```.env``` file to the ```/server``` directory.
 
 ### Starting the Server:
 
-1. Navigate to the "server" directory in the terminal.
-2. Run npm start to start the server.
-3. The server will start running at http://localhost:3000.
+1. Navigate to the ```server``` directory in the terminal.
+2. Run ```npm install``` to install all the dependencies for the server.
+3. Run ```npm start``` to start the server.
+4. The server will start running at http://localhost:3000.
+
+### Starting the Client:
+
+1. Navigate to the ```client``` directory in the terminal
+2. Run ```npm install``` to install all the dependencies for the client.
+3. Run ```npm start``` to start the client.
+4. The client will open in your default web browser at http://localhost:4200.
 
 ### Connecting to MongoDB:
 
